@@ -1,0 +1,85 @@
+{
+  "permissions": {
+    "allow": [
+      "Read",
+      "Glob",
+      "Grep",
+      "Edit",
+      "Write",
+      "NotebookEdit",
+      "WebFetch",
+      "WebSearch",
+      "Task",
+      "TodoWrite",
+      "Bash",
+      "Skill"
+    ],
+    "ask": [
+      "Bash(rm:*)",
+      "Bash(git push:*)",
+      "Bash(git commit:*)"
+    ],
+    "deny": [
+      "Bash(rm -rf /)",
+      "Bash(rm -rf ~)",
+      "Bash(sudo:*)"
+    ]
+  },
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/play-notification.sh completion"
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/play-notification.sh completion"
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/play-notification.sh approval"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node ~/.claude/hooks/auto-compact.js"
+          }
+        ]
+      }
+    ]
+  },
+  "mcpServers": {
+    "playwright": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@playwright/mcp@latest",
+        "--headless",
+        "--isolated"
+      ]
+    },
+    "fetch": {
+      "command": "npx",
+      "args": ["-y", "@anthropic/mcp-fetch"]
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "name": "hieu-ccsetup",
+  "version": "1.0.0",
+  "description": "Bootstrap Claude Code with power-user configuration: agents, skills, commands, and hooks",
+  "bin": {
+    "hieu-ccsetup": "./bin/setup.js"
+  },
+  "files": [
+    "bin",
+    "config"
+  ],
+  "keywords": [
+    "claude",
+    "claude-code",
+    "cli",
+    "setup",
+    "bootstrap",
+    "anthropic",
+    "ai",
+    "configuration"
+  ],
+  "author": "hieudinh",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hieudinh/hieu-ccsetup.git"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
