@@ -93,10 +93,8 @@ class TestBackupManager:
 
         manager = BackupManager("postgres", temp_backup_dir)
 
-        with patch('builtins.open', create=True) as mock_open, \
-             patch('pathlib.Path.stat') as mock_stat:
+        with patch('builtins.open', create=True) as mock_open:
             mock_open.return_value.__enter__.return_value = MagicMock()
-            mock_stat.return_value = Mock(st_size=1024)
 
             backup_info = manager.create_backup(
                 "postgresql://localhost/testdb",

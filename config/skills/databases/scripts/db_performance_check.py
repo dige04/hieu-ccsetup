@@ -15,7 +15,6 @@ try:
     from pymongo import MongoClient
     MONGO_AVAILABLE = True
 except ImportError:
-    MongoClient = None  # Stub for patching in tests
     MONGO_AVAILABLE = False
 
 try:

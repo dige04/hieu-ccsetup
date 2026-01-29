@@ -71,7 +71,6 @@ class TestMigrationManager:
         assert manager.connection_string == "mongodb://localhost"
         assert Path(temp_migrations_dir).exists()
 
-    @patch('db_migrate.MONGO_AVAILABLE', True)
     @patch('db_migrate.MongoClient')
     def test_connect_mongodb(self, mock_client_class, temp_migrations_dir, mock_mongo_client):
         """Test MongoDB connection."""
@@ -160,7 +159,6 @@ class TestMigrationManager:
             assert pending[0].id == "20250101120000"
             assert pending[0].name == "test_migration"
 
-    @patch('db_migrate.MONGO_AVAILABLE', True)
     @patch('db_migrate.MongoClient')
     def test_apply_mongodb_migration(self, mock_client_class, temp_migrations_dir, mock_mongo_client):
         """Test applying MongoDB migration."""

@@ -139,10 +139,11 @@ Options:
   --help, -h       Show this help message
 
 What gets installed:
-  ~/.claude/agents/       Custom subagents (20+)
-  ~/.claude/skills/       Skills & workflows (50+)
-  ~/.claude/commands/     Slash commands (25+)
+  ~/.claude/agents/       Custom subagents (35+)
+  ~/.claude/skills/       Skills & workflows (70+)
+  ~/.claude/commands/     Slash commands (30+)
   ~/.claude/hooks/        Automation hooks
+  ~/.claude/principles/   Core principles & guidelines
   ~/.claude/CLAUDE.md     Global instructions (merged)
   ~/.claude/settings.json Settings (merged, not overwritten)
 `);
@@ -191,6 +192,13 @@ What gets installed:
       execSync(`chmod +x "${path.join(CLAUDE_DIR, 'hooks')}"/*.sh 2>/dev/null || true`);
       execSync(`chmod +x "${path.join(CLAUDE_DIR, 'hooks')}"/*.js 2>/dev/null || true`);
     } catch (e) {}
+  }
+
+  // Install principles
+  log.step('Installing principles...');
+  const principlesSrc = path.join(CONFIG_DIR, 'principles');
+  if (fs.existsSync(principlesSrc)) {
+    copyRecursive(principlesSrc, path.join(CLAUDE_DIR, 'principles'), forceOverwrite);
   }
 
   // Merge settings

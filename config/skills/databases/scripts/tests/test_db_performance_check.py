@@ -101,7 +101,6 @@ class TestPerformanceAnalyzer:
         assert analyzer.connection_string == "mongodb://localhost"
         assert analyzer.threshold_ms == 100
 
-    @patch('db_performance_check.MONGO_AVAILABLE', True)
     @patch('db_performance_check.MongoClient')
     def test_connect_mongodb(self, mock_client_class, mock_mongo_client):
         """Test MongoDB connection."""
@@ -134,7 +133,6 @@ class TestPerformanceAnalyzer:
 
         assert result is False
 
-    @patch('db_performance_check.MONGO_AVAILABLE', True)
     @patch('db_performance_check.MongoClient')
     def test_analyze_mongodb(self, mock_client_class, mock_mongo_client):
         """Test MongoDB performance analysis."""
@@ -315,7 +313,6 @@ class TestPerformanceAnalyzer:
         analyzer.client.close.assert_called_once()
         analyzer.conn.close.assert_called_once()
 
-    @patch('db_performance_check.MONGO_AVAILABLE', True)
     @patch('db_performance_check.MongoClient')
     def test_analyze_error_handling(self, mock_client_class, mock_mongo_client):
         """Test error handling during analysis."""
@@ -336,7 +333,6 @@ class TestPerformanceAnalyzer:
 class TestIntegration:
     """Integration tests."""
 
-    @patch('db_performance_check.MONGO_AVAILABLE', True)
     @patch('db_performance_check.MongoClient')
     def test_full_mongodb_workflow(self, mock_client_class, mock_mongo_client, tmp_path):
         """Test complete MongoDB analysis workflow."""
